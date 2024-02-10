@@ -13,6 +13,7 @@ public class HlavniProgram {
         if (zofka.isPenDrawing()) {
             zofka.penUp();
         }
+        /*
         nakresliRovnostrannyTrojuhelnik(50.0);
         nakresliCtverec(100.0);
         nakresliObdelnik(150.0, 250.0);
@@ -24,6 +25,27 @@ public class HlavniProgram {
         nakresliKolecko(50.0);
         nakresliKolecko(100);
         nakresliKolecko(200);
+        */
+
+        zofka.turnLeft(90);
+        zofka.move(400);
+        zofka.turnLeft(90);
+        zofka.move(200);
+        zofka.turnRight(180);
+
+        nakresliZmrzku();
+
+        zofka.turnRight(90);
+        zofka.move(250);
+        zofka.turnLeft(90);
+
+        nakresliSnehulaka();
+
+        zofka.turnRight(90);
+        zofka.move(600);
+        zofka.turnLeft(90);
+
+        nakresliMasinku();
     }
 
     public void nakresliRovnostrannyTrojuhelnik(double velikostStrany) {
@@ -35,6 +57,20 @@ public class HlavniProgram {
             zofka.turnLeft(120.0);
         }
         zofka.penUp();
+    }
+
+    public void nakresliRovnoramennyTrojuhelnik(double velikostStrany) {
+        var velikostPrepony = Math.sqrt(2*Math.pow(velikostStrany, 2));
+
+        if (!zofka.isPenDrawing()) {
+            zofka.penDown();
+        }
+        zofka.move(velikostStrany);
+        zofka.turnLeft(135.0);
+        zofka.move(velikostPrepony);
+        zofka.turnLeft(135.0);
+        zofka.move(velikostStrany);
+        zofka.turnLeft(90);
     }
 
     public void nakresliCtverec(double velikostStrany) {
@@ -80,11 +116,83 @@ public class HlavniProgram {
     }
 
     public void nakresliZmrzku() {
-        nakresliKolecko(50);
-        zofka.turnLeft(180);
-        zofka.move(20);
-        zofka.turnRight(90);
+        zofka.turnRight(30);
         nakresliRovnostrannyTrojuhelnik(100);
+        zofka.turnLeft(30);
+        zofka.move(60);
         zofka.turnRight(90);
+        nakresliKolecko(50);
+        zofka.turnRight(90);
+        zofka.move(60);
+        zofka.turnLeft(180);
+    }
+
+    public void nakresliSnehulaka() {
+        //nakresli spodni kouli
+        zofka.turnRight(90);
+        nakresliKolecko(100);
+        zofka.turnLeft(90);
+
+        //nakresli prostredni kouli
+        zofka.move(200);
+        zofka.turnRight(90);
+        nakresliKolecko(70);
+        zofka.turnLeft(90);
+
+        //nakresli hlavu
+        zofka.move(140);
+        zofka.turnRight(90);
+        nakresliKolecko(50);
+        zofka.turnLeft(90);
+
+        //nakresli ruce
+        zofka.turnRight(180);
+        zofka.move(70);
+        zofka.turnLeft(90);
+        zofka.move(70);
+        zofka.turnRight(90);
+        nakresliKolecko(30);
+        zofka.turnRight(90);
+        zofka.move(140);
+        zofka.turnRight(90);
+        nakresliKolecko(30);
+        zofka.turnRight(90);
+
+        //vrat se na zacatek
+        zofka.move(70);
+        zofka.turnRight(90);
+        zofka.move(70+200);
+        zofka.turnLeft(180);
+    }
+
+    public void nakresliMasinku() {
+        nakresliObdelnik(200, 140);
+        nakresliKolecko(70);
+
+        // presun se ke stredni casti masinky
+        zofka.turnLeft(90);
+        zofka.move(140);
+        zofka.turnRight(90);
+
+        // nakresli prostredni cast masinky
+        nakresliObdelnik(120, 220);
+        zofka.turnLeft(90);
+        zofka.move(80);
+        nakresliKolecko(35);
+        zofka.move(80);
+        nakresliKolecko(35);
+        zofka.move(60);
+
+        // nakresli spicku
+        zofka.turnLeft(90);
+        zofka.move(35);
+        zofka.turnRight(180);
+        nakresliRovnoramennyTrojuhelnik(120);
+
+        // jdi na zacatek
+        zofka.move(35);
+        zofka.turnRight(90);
+        zofka.move(360);
+        zofka.turnLeft(90);
     }
 }
